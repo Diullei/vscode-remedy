@@ -29,7 +29,7 @@ function mkui({ ui, code }) {
     'symbolIcon.booleanForeground': code.primitives,
     'symbolIcon.classForeground': code.classes,
     'symbolIcon.constantForeground': code.primitives,
-    'symbolIcon.constructorForeground': code.language,
+    'symbolIcon.constructorForeground': code.classes,
     'symbolIcon.fieldForeground': code.raw,
     'symbolIcon.functionForeground': code.functions,
     'symbolIcon.interfaceForeground': code.types,
@@ -39,8 +39,9 @@ function mkui({ ui, code }) {
     'symbolIcon.propertyForeground': code.constants,
     'symbolIcon.stringForeground': code.strings,
     'symbolIcon.structForeground': code.types,
-    'symbolIcon.variableForeground': code.language,
+    'symbolIcon.variableForeground': code.constants,
     'symbolIcon.numberForeground': code.primitives,
+    'symbolIcon.snippetForeground': code.primitives,
     // 'symbolIcon.colorForeground': '#ff0000',
     // 'symbolIcon.enumeratorForeground': '#ff0000',
     // 'symbolIcon.enumeratorMemberForeground': '#ff0000',
@@ -48,16 +49,15 @@ function mkui({ ui, code }) {
     // 'symbolIcon.fileForeground': '#ff0000',
     // 'symbolIcon.folderForeground': '#ff0000',
     // 'symbolIcon.keyForeground': '#ff0000',
-    // 'symbolIcon.keywordForeground': '#ff0000',
-    // 'symbolIcon.nullForeground': '#ff0000',
+    'symbolIcon.keywordForeground': code.language,
+    'symbolIcon.nullForeground': code.primitives,
     // 'symbolIcon.objectForeground': '#ff0000',
-    // 'symbolIcon.operatorForeground': '#ff0000',
-    // 'symbolIcon.packageForeground': '#ff0000',
+    'symbolIcon.operatorForeground': code.language,
+    'symbolIcon.packageForeground': code.classes,
     // 'symbolIcon.referenceForeground': '#ff0000',
-    // 'symbolIcon.snippetForeground': '#ff0000',
-    // 'symbolIcon.textForeground': '#ff0000',
-    // 'symbolIcon.typeParameterForeground': '#ff0000',
-    // 'symbolIcon.unitForeground': '#ff0000',
+    'symbolIcon.textForeground': code.comments,
+    'symbolIcon.typeParameterForeground': code.types,
+    'symbolIcon.unitForeground': code.primitives,
 
     /**
      * Lightbulb
@@ -148,21 +148,21 @@ function mkui({ ui, code }) {
     'tree.indentGuidesStroke': `${ui.text.secondary.hex()}99`,
     'list.activeSelectionBackground': `${ui.accent.hex()}99`,
     'list.activeSelectionForeground': ui.text.primary.hex(),
-    'list.focusBackground': `${ui.accent.hex()}BB`,
-    'list.hoverBackground': `${ui.accent.hex()}22`,
+    'list.focusBackground': `${ui.accent.hex()}66`,
+    'list.hoverBackground': `${ui.accent.hex()}11`,
     'listFilterWidget.background': ui.accent.hex(),
     'listFilterWidget.noMatchesOutline': ui.problems.error.hex(),
-    'list.inactiveSelectionBackground': `${ui.accent.hex()}22`,
+    'list.inactiveSelectionBackground': `${ui.accent.hex()}66`,
     'list.highlightForeground': ui.accent.hex(),
     'list.dropBackground': `${ui.background.drop.hex()}22`,
     'list.errorForeground': ui.problems.error.hex(),
     'list.warningForeground': ui.problems.warning.hex(),
     'list.deemphasizedForeground': ui.scm.ignored.hex(),
     'list.invalidItemForeground': ui.problems.error.hex(),
+    'list.inactiveFocusBackground': `${ui.accent.hex()}44`,
     // 'list.focusForeground': '#ff0000',
     // 'list.hoverForeground': '#ff0000',
     // 'list.inactiveSelectionForeground': '#ff0000',
-    // 'list.inactiveFocusBackground': '#ff0000',
     // 'listFilterWidget.outline': '#ff0000',
 
     /**
@@ -418,15 +418,20 @@ function mkui({ ui, code }) {
     'statusBar.noFolderBackground': ui.background.panel.hex(),
     'statusBarItem.hoverBackground': [
       ui.background.panel.isDark()
-        ? ui.background.panel.lighten(0.7).hex()
-        : ui.background.panel.darken(0.7).hex(),
+        ? ui.background.panel.mix(ui.background.drop, 0.1).hex()
+        : ui.background.panel.mix(ui.background.drop, 0.2).hex(),
       '66',
     ].join(''),
     'statusBarItem.remoteBackground': ui.accent.hex(),
     'statusBarItem.remoteForeground': ui.text.contrast.hex(),
     // 'statusBar.noFolderForeground': '#FF0000',
     // 'statusBar.noFolderBorder': '#FF0000',
-    // 'statusBarItem.activeBackground': '#FF0000',
+    'statusBarItem.activeBackground': [
+      ui.background.panel.isDark()
+        ? ui.background.panel.mix(ui.background.drop, 0.2).hex()
+        : ui.background.panel.mix(ui.background.drop, 0.4).hex(),
+      '66',
+    ].join(''),
     // 'statusBarItem.prominentForeground': '#FF0000',
     // 'statusBarItem.prominentBackground': '#FF0000',
     // 'statusBarItem.prominentHoverBackground': '#FF0000',
@@ -596,10 +601,10 @@ function mkui({ ui, code }) {
     /**
      * Snippets
      */
-    'editor.snippetTabstopHighlightBackground': `${ui.text.primary.hex()}22`,
+    'editor.snippetTabstopHighlightBackground': `${ui.text.primary.hex()}11`,
     'editor.snippetFinalTabstopHighlightBackground': ui.text.primary.hex(),
     'editor.snippetFinalTabstopHighlightBorder': `${ui.accent.hex()}99`,
-    // 'editor.snippetTabstopHighlightBorder': '#FF0000',
+    'editor.snippetTabstopHighlightBorder': `${ui.scm.modified.hex()}66`,
 
 
     // EXTENSIONS
